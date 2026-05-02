@@ -590,6 +590,296 @@ _register("korean", RiceVariety(
           "Optimized for daily Korean table rice.",
 ))
 
+# ── Basmati (Indian/Pakistani) ─────────────────────────────────────────────────
+
+_register("basmati", RiceVariety(
+    name="Basmati (Traditional)",
+    short_name="Basmati",
+    grain_type=GrainType.WHITE,
+    origin="India/Pakistan",
+    amylose_pct=22.0,       # High amylose = separate, fluffy grains
+    protein_pct=8.0,
+    starch_accessibility=1.15,  # Long slender grains, slower absorption
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,       # Basmati is often aged intentionally
+    target_moisture=27.0,   # Lower target — should stay separate
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=60,
+    stickiness=1.5,
+    softness=2.5,
+    grain_definition=5.0,
+    best_for=["biryani", "pilaf", "pulao", "plain basmati"],
+    notes="Extra-long grain indica. High amylose = fluffy separate grains. "
+          "Traditionally soaked 30 min before cooking. Aged basmati (1+ year) "
+          "is preferred — grains elongate more and stay firmer.",
+))
+
+_register("basmati_1121", RiceVariety(
+    name="Pusa Basmati 1121",
+    short_name="Basmati 1121",
+    grain_type=GrainType.WHITE,
+    origin="India",
+    amylose_pct=22.0,
+    protein_pct=8.8,        # Slightly higher protein
+    starch_accessibility=1.20,  # Exceptional elongation, slower hydration
+    m0_new_crop=13.0,
+    m0_old_crop=11.0,
+    target_moisture=26.0,
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.96,
+    min_soak_min=30,
+    max_soak_min=60,
+    stickiness=1.0,
+    softness=2.0,
+    grain_definition=5.0,
+    best_for=["biryani", "pilaf", "presentation dishes"],
+    notes="Extra-long slender grains (9mm). Exceptional kernel elongation "
+          "ratio of 2.5x when cooked (up to 22mm). Premium biryani rice.",
+))
+
+# ── Persian / Iranian ─────────────────────────────────────────────────────────
+
+_register("sadri", RiceVariety(
+    name="Sadri (صدری)",
+    short_name="Sadri",
+    grain_type=GrainType.WHITE,
+    origin="Iran (Gilan/Mazandaran)",
+    amylose_pct=22.0,
+    protein_pct=8.5,
+    starch_accessibility=1.1,
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=120,
+    stickiness=1.5,
+    softness=2.5,
+    grain_definition=5.0,
+    best_for=["chelow", "polo", "tahdig", "Persian meals"],
+    notes="Premium aromatic long-grain. Very long slender grains (>7mm). "
+          "Traditional Persian preparation: soak 2-8h in salted water, "
+          "parboil, then steam (chelow method).",
+))
+
+_register("tarom", RiceVariety(
+    name="Tarom (طارم)",
+    short_name="Tarom",
+    grain_type=GrainType.WHITE,
+    origin="Iran (Mazandaran)",
+    amylose_pct=23.5,       # Published: 23.57%
+    protein_pct=9.5,        # Published: 9.49%
+    starch_accessibility=1.15,
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=1.55,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=120,
+    stickiness=1.5,
+    softness=2.0,
+    grain_definition=5.0,
+    best_for=["chelow", "polo", "tahdig", "Persian meals"],
+    notes="Popular Iranian aromatic variety. Higher amylose and protein "
+          "than Sadri. Very fragrant (2-acetyl-1-pyrroline).",
+))
+
+_register("domsiah", RiceVariety(
+    name="Domsiah (دم سیاه)",
+    short_name="Domsiah",
+    grain_type=GrainType.WHITE,
+    origin="Iran (Gilan)",
+    amylose_pct=22.2,       # Published
+    protein_pct=9.0,
+    starch_accessibility=1.1,
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=120,
+    stickiness=1.5,
+    softness=2.5,
+    grain_definition=5.0,
+    best_for=["chelow", "polo", "tahdig"],
+    notes="'Black tail' — long grains with distinctive dark tip. "
+          "Premium aromatic Iranian variety. Excellent for tahdig.",
+))
+
+_register("champa_iranian", RiceVariety(
+    name="Champa (چمپا)",
+    short_name="Champa (Iranian)",
+    grain_type=GrainType.WHITE,
+    origin="Iran",
+    amylose_pct=21.0,
+    protein_pct=8.5,
+    starch_accessibility=1.0,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=28.0,
+    water_ratio_base=1.45,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=90,
+    stickiness=2.0,
+    softness=3.0,
+    grain_definition=4.0,
+    best_for=["everyday Persian", "polo", "kateh"],
+    notes="Medium-grain Iranian variety. More affordable than Sadri/Tarom. "
+          "More resistant to environmental stress. Good everyday rice.",
+))
+
+# ── Thai ───────────────────────────────────────────────────────────────────────
+
+_register("jasmine", RiceVariety(
+    name="Thai Jasmine / Hom Mali (KDML105)",
+    short_name="Thai Jasmine",
+    grain_type=GrainType.WHITE,
+    origin="Thailand",
+    amylose_pct=15.5,       # Published range: 13-18%, typical ~15.5%
+    protein_pct=6.7,
+    starch_accessibility=0.95,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.25,
+    water_ratio_new_crop_adj=0.94,
+    min_soak_min=0,         # Often cooked without soaking
+    max_soak_min=30,
+    stickiness=3.5,
+    softness=3.5,
+    grain_definition=3.0,
+    best_for=["Thai curries", "stir fry", "everyday Asian"],
+    notes="Fragrant long-grain indica. Soft and slightly sticky when fresh. "
+          "Aroma compound 2-acetyl-1-pyrroline. Often cooked without soaking. "
+          "New crop jasmine is noticeably more fragrant and sticky.",
+))
+
+_register("khao_niao", RiceVariety(
+    name="Khao Niao (ข้าวเหนียว) — Thai Sticky",
+    short_name="Thai Sticky",
+    grain_type=GrainType.WHITE,
+    origin="Thailand/Laos",
+    amylose_pct=1.5,        # Near-zero amylose, almost pure amylopectin
+    protein_pct=7.5,
+    starch_accessibility=0.65,  # Very fast absorption
+    m0_new_crop=14.0,
+    m0_old_crop=12.5,
+    target_moisture=34.0,   # High target — fully saturated for steaming
+    water_ratio_base=0.75,  # Steamed, not boiled — much less water
+    water_ratio_new_crop_adj=0.92,
+    min_soak_min=180,       # Minimum 3 hours
+    max_soak_min=720,       # Up to 12 hours
+    stickiness=5.0,
+    softness=4.5,
+    grain_definition=1.0,
+    best_for=["mango sticky rice", "laab", "som tum", "Thai/Lao meals"],
+    notes="Thai/Lao glutinous rice. Almost pure amylopectin. "
+          "Must soak 3-12 hours. Traditionally steamed in bamboo basket "
+          "(not boiled). Water ratio is for steaming, not absorption cooking.",
+))
+
+# ── Chinese ────────────────────────────────────────────────────────────────────
+
+_register("wuchang", RiceVariety(
+    name="Wuchang Daohuaxiang (五常稻花香)",
+    short_name="Wuchang",
+    grain_type=GrainType.WHITE,
+    origin="Heilongjiang, China",
+    amylose_pct=17.0,       # Moderate, similar to Japanese
+    protein_pct=7.1,
+    starch_accessibility=0.95,
+    m0_new_crop=14.0,
+    m0_old_crop=12.0,
+    target_moisture=30.0,
+    water_ratio_base=1.20,
+    water_ratio_new_crop_adj=0.93,
+    min_soak_min=30,
+    max_soak_min=60,
+    stickiness=3.5,
+    softness=3.5,
+    grain_definition=3.0,
+    best_for=["steamed rice", "congee", "everyday Chinese"],
+    notes="Premium northeast Chinese japonica. Aromatic, soft, slightly sweet "
+          "and sticky. Grown on famous Wuchang black soil. Similar profile "
+          "to Japanese short-grain but with distinctive fragrance.",
+))
+
+_register("dongbei", RiceVariety(
+    name="Dongbei (东北大米) — Northeast Chinese",
+    short_name="Dongbei",
+    grain_type=GrainType.WHITE,
+    origin="Heilongjiang/Jilin/Liaoning, China",
+    amylose_pct=18.0,
+    protein_pct=7.4,
+    starch_accessibility=1.0,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.25,
+    water_ratio_new_crop_adj=0.94,
+    min_soak_min=20,
+    max_soak_min=60,
+    stickiness=3.0,
+    softness=3.0,
+    grain_definition=3.5,
+    best_for=["steamed rice", "fried rice", "everyday Chinese"],
+    notes="Standard northeast Chinese japonica. Workhorse rice for northern "
+          "Chinese cooking. Good balance of stickiness and structure.",
+))
+
+_register("nuo_mi", RiceVariety(
+    name="Nuo Mi (糯米) — Chinese Glutinous",
+    short_name="Chinese Glutinous",
+    grain_type=GrainType.WHITE,
+    origin="China",
+    amylose_pct=2.0,
+    protein_pct=8.0,
+    starch_accessibility=0.70,
+    m0_new_crop=14.0,
+    m0_old_crop=12.5,
+    target_moisture=33.0,
+    water_ratio_base=0.85,
+    water_ratio_new_crop_adj=0.92,
+    min_soak_min=120,
+    max_soak_min=480,
+    stickiness=5.0,
+    softness=4.5,
+    grain_definition=1.0,
+    best_for=["zongzi", "tangyuan", "nian gao", "lo mai gai"],
+    notes="Chinese glutinous/sticky rice. Near-zero amylose. "
+          "Soak 2-8 hours. Used for dim sum, rice dumplings, and sweets. "
+          "Can be steamed or wrapped in lotus leaf.",
+))
+
+_register("indica_long", RiceVariety(
+    name="Long Grain Indica (Generic)",
+    short_name="Long Grain",
+    grain_type=GrainType.WHITE,
+    origin="Various",
+    amylose_pct=25.0,       # High amylose = separate grains
+    protein_pct=7.5,
+    starch_accessibility=1.1,
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=26.0,
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=0,
+    max_soak_min=30,
+    stickiness=1.5,
+    softness=2.0,
+    grain_definition=5.0,
+    best_for=["pilaf", "fried rice", "side dish", "general purpose"],
+    notes="Generic long-grain indica (Uncle Ben's, etc.). High amylose = "
+          "separate fluffy grains. Often parboiled commercially.",
+))
+
 
 # ─── Core Model Functions ──────────────────────────────────────────────────────
 
