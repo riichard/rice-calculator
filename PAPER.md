@@ -1,6 +1,6 @@
 # A Parametric Model for Predicting Soaking Time and Water Ratio Across Rice Cultivars Using the Peleg Equation
 
-**Authors:** Richard [surname], with computational assistance from Claude (Anthropic)
+**Authors:** Richard Kraaijenhagen
 
 **Status:** Working draft — seeking experimental collaborators
 
