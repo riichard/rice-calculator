@@ -1367,6 +1367,132 @@ def list_dishes() -> list[str]:
     return list(DISH_PAIRINGS.keys())
 
 
+# ─── Vacuum Soaking ────────────────────────────────────────────────────────────
+# Vacuum soaking accelerates water absorption by pulling air out of the
+# grain's internal pores. When vacuum is released, atmospheric pressure
+# pushes water into the now-empty spaces. The vacuum doesn't force water
+# in — the pressure differential on release does the work.
+#
+# From literature:
+#   - Li et al. (2021): vacuum soaking reduced steaming time by 45%
+#     (58→32 min), created porous surface structure, loosened starch
+#   - Hydration kinetics study: optimal vacuum at 0.01 MPa (≈10 kPa abs),
+#     absorption rate 6.01 g/g/min vs atmospheric baseline
+#   - Pulsed vacuum (5-15 min on, release, repeat) is more effective than
+#     sustained vacuum — each release cycle forces a new water pulse
+#
+# Effect on Peleg k1: vacuum reduces k1 (faster initial absorption) by
+# creating micro-channels through the grain. The effect scales with vacuum
+# strength and number of pulses. k2 (capacity) is largely unchanged —
+# vacuum changes how fast water gets in, not how much the grain can hold.
+#
+# Home equipment: FoodSaver marinating container or chamber vacuum sealer
+# at roughly -0.8 to -0.9 bar (10-20 kPa absolute).
+
+@dataclass
+class VacuumProtocol:
+    """Vacuum soaking parameters."""
+    pressure_kpa: float = 10.0    # Absolute pressure in kPa (atm ≈ 101 kPa)
+    pulse_minutes: float = 10.0   # Vacuum hold duration per pulse
+    num_pulses: int = 2           # Number of vacuum-release cycles
+    rest_minutes: float = 5.0    # Atmospheric rest between pulses
+
+    @property
+    def total_time(self) -> float:
+        """Total vacuum treatment time in minutes."""
+        return (self.pulse_minutes * self.num_pulses +
+                self.rest_minutes * max(0, self.num_pulses - 1))
+
+
+# Vacuum strength → k1 reduction factor
+# Based on: 0.01 MPa (10 kPa) optimal in literature, ~45% time reduction
+# which maps to roughly 0.55x k1 multiplier.
+# Linear interpolation from atmospheric (101 kPa → 1.0) to strong vacuum
+# (10 kPa → 0.55). Multiple pulses compound the effect slightly.
+def vacuum_k1_factor(protocol: VacuumProtocol) -> float:
+    """Calculate k1 reduction factor for vacuum soaking.
+
+    Returns multiplier on k1 (lower = faster absorption).
+    """
+    # Vacuum strength effect: stronger vacuum → lower k1
+    # At 101 kPa (atmospheric): factor = 1.0
+    # At 10 kPa (strong vacuum): factor = 0.55
+    vacuum_ratio = max(0.0, min(1.0, (101.0 - protocol.pressure_kpa) / 91.0))
+    strength_factor = 1.0 - 0.45 * vacuum_ratio
+
+    # Pulse multiplier: each additional pulse gives diminishing benefit
+    # 1 pulse: 1.0x, 2 pulses: 0.85x, 3 pulses: 0.75x
+    pulse_factor = 1.0
+    for _ in range(protocol.num_pulses - 1):
+        pulse_factor *= 0.85
+
+    return max(0.35, strength_factor * pulse_factor)
+
+
+def vacuum_soak_time(variety_key: str,
+                     protocol: VacuumProtocol | None = None,
+                     crop_age_months: float = 6.0) -> dict:
+    """Calculate equivalent soak time and actual time needed with vacuum.
+
+    Args:
+        variety_key: Key into VARIETIES dict
+        protocol: Vacuum parameters. None uses default (10 kPa, 2 pulses)
+        crop_age_months: Months since harvest
+
+    Returns dict comparing vacuum vs atmospheric soaking.
+    """
+    if protocol is None:
+        protocol = VacuumProtocol()
+
+    v = VARIETIES[variety_key]
+    m0 = _interpolate_m0(v, crop_age_months)
+
+    # Normal (atmospheric) time to target
+    t_atm = time_to_target(m0, v.k1, v.k2, v.target_moisture)
+
+    # Vacuum-adjusted k1
+    k1_factor = vacuum_k1_factor(protocol)
+    k1_vac = v.k1 * k1_factor
+
+    # Vacuum time to target (same k2 — capacity unchanged)
+    t_vac = time_to_target(m0, k1_vac, v.k2, v.target_moisture)
+
+    # Effective soak during vacuum treatment
+    # The total treatment time includes pulses + rests
+    treatment_time = protocol.total_time
+
+    # Moisture after vacuum treatment
+    m_after_vac = peleg_moisture(treatment_time, m0, k1_vac, v.k2)
+
+    # How much additional atmospheric soaking is needed after treatment?
+    remaining_target = v.target_moisture - m_after_vac
+    additional_atm = 0.0
+    if remaining_target > 0:
+        # Continue soaking at atmospheric k1 from current moisture level
+        denom = 1.0 - v.k2 * remaining_target
+        if denom > 0:
+            additional_atm = v.k1 * remaining_target / denom
+
+    return {
+        "variety": v.name,
+        "short_name": v.short_name,
+        "vacuum_pressure_kpa": protocol.pressure_kpa,
+        "num_pulses": protocol.num_pulses,
+        "k1_factor": round(k1_factor, 2),
+        "k1_atmospheric": round(v.k1, 2),
+        "k1_vacuum": round(k1_vac, 2),
+        "atmospheric_soak_min": round(t_atm, 0) if t_atm else None,
+        "vacuum_treatment_min": round(treatment_time, 0),
+        "moisture_after_treatment_pct": round(m_after_vac, 1),
+        "additional_soak_needed_min": round(additional_atm, 0),
+        "total_vacuum_method_min": round(treatment_time + additional_atm, 0),
+        "time_saved_pct": round(
+            (1.0 - (treatment_time + additional_atm) / t_atm) * 100, 0
+        ) if t_atm else 0,
+        "target_moisture_pct": v.target_moisture,
+    }
+
+
 # ─── Core Model Functions ──────────────────────────────────────────────────────
 
 def peleg_moisture(t_min: float, m0: float, k1: float, k2: float) -> float:
