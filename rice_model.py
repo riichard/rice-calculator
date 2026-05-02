@@ -880,6 +880,492 @@ _register("indica_long", RiceVariety(
           "separate fluffy grains. Often parboiled commercially.",
 ))
 
+# ── Italian (Risotto) ──────────────────────────────────────────────────────────
+
+_register("arborio", RiceVariety(
+    name="Arborio",
+    short_name="Arborio",
+    grain_type=GrainType.WHITE,
+    origin="Italy (Piedmont/Lombardy)",
+    amylose_pct=19.0,
+    protein_pct=6.8,
+    starch_accessibility=0.85,  # Releases surface starch easily (creaminess)
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=30.0,
+    water_ratio_base=1.50,  # Risotto uses gradual broth addition
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=0,         # Risotto rice is NOT soaked
+    max_soak_min=0,
+    stickiness=3.5,
+    softness=3.5,
+    grain_definition=2.5,
+    best_for=["risotto", "arancini", "rice pudding"],
+    notes="Most common risotto rice. Large grain, releases amylopectin "
+          "surface starch for creaminess while maintaining chewy core. "
+          "Never soak or rinse — you need that surface starch.",
+))
+
+_register("carnaroli", RiceVariety(
+    name="Carnaroli",
+    short_name="Carnaroli",
+    grain_type=GrainType.WHITE,
+    origin="Italy (Piedmont/Lombardy)",
+    amylose_pct=25.4,      # Published — highest of Italian varieties
+    protein_pct=7.0,
+    starch_accessibility=0.90,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.50,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=0,
+    max_soak_min=0,
+    stickiness=3.0,
+    softness=2.5,
+    grain_definition=3.5,
+    best_for=["risotto", "premium risotto"],
+    notes="'King of risotto rice'. Higher amylose than Arborio = firmer "
+          "bite, better cooking resistance. Preferred by chefs. "
+          "Never soak or rinse.",
+))
+
+_register("vialone_nano", RiceVariety(
+    name="Vialone Nano",
+    short_name="Vialone Nano",
+    grain_type=GrainType.WHITE,
+    origin="Italy (Veneto)",
+    amylose_pct=22.9,       # Published
+    protein_pct=6.7,
+    starch_accessibility=0.90,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.45,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=0,
+    max_soak_min=0,
+    stickiness=3.0,
+    softness=2.5,
+    grain_definition=3.5,
+    best_for=["risotto", "risi e bisi", "Venetian dishes"],
+    notes="Semi-fine grain from Veneto. Absorbs sauce well, cooks faster "
+          "than Carnaroli. Traditional for Venetian risotto. Never rinse.",
+))
+
+# ── Spanish (Paella) ──────────────────────────────────────────────────────────
+
+_register("bomba", RiceVariety(
+    name="Bomba (Valencia)",
+    short_name="Bomba",
+    grain_type=GrainType.WHITE,
+    origin="Spain (Valencia)",
+    amylose_pct=27.0,       # Published range: 25-30%
+    protein_pct=7.0,
+    starch_accessibility=1.25,  # Absorbs slowly but massively (3x volume)
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=26.0,
+    water_ratio_base=2.50,  # Absorbs 3x its volume — highest ratio
+    water_ratio_new_crop_adj=0.96,
+    min_soak_min=0,         # Paella rice is not soaked
+    max_soak_min=0,
+    stickiness=1.0,
+    softness=2.0,
+    grain_definition=5.0,
+    best_for=["paella", "arroz caldoso", "fideuà"],
+    notes="The paella rice. Absorbs 3x its volume in broth (vs 2x for "
+          "most rice). Expands in width not length. Stays separate and "
+          "firm even after absorbing massive amounts of liquid. Never rinse.",
+))
+
+_register("calasparra", RiceVariety(
+    name="Calasparra",
+    short_name="Calasparra",
+    grain_type=GrainType.WHITE,
+    origin="Spain (Murcia)",
+    amylose_pct=25.0,
+    protein_pct=7.0,
+    starch_accessibility=1.20,
+    m0_new_crop=13.0,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=2.30,
+    water_ratio_new_crop_adj=0.96,
+    min_soak_min=0,
+    max_soak_min=0,
+    stickiness=1.5,
+    softness=2.0,
+    grain_definition=4.5,
+    best_for=["paella", "arroz al horno"],
+    notes="D.O. protected Spanish rice. 85% absorption match to Bomba. "
+          "Best Bomba substitute. Never rinse.",
+))
+
+# ── Vietnamese ─────────────────────────────────────────────────────────────────
+
+_register("st25", RiceVariety(
+    name="ST25 (Soc Trang 25)",
+    short_name="ST25",
+    grain_type=GrainType.WHITE,
+    origin="Vietnam (Soc Trang)",
+    amylose_pct=16.0,       # Low amylose — soft and fragrant
+    protein_pct=7.5,
+    starch_accessibility=0.90,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.20,
+    water_ratio_new_crop_adj=0.94,
+    min_soak_min=0,
+    max_soak_min=30,
+    stickiness=3.0,
+    softness=3.5,
+    grain_definition=3.5,
+    best_for=["plain rice", "Vietnamese meals", "everyday"],
+    notes="'World's Best Rice' 2019 and 2023. Long-grain but soft and "
+          "fragrant. Developed by Ho Quang Cua over 20 years. Pandan-like "
+          "aroma. Unusual: long grain with Japanese-like softness.",
+))
+
+# ── Bhutanese ──────────────────────────────────────────────────────────────────
+
+_register("bhutanese_red", RiceVariety(
+    name="Bhutanese Red Rice",
+    short_name="Bhutanese Red",
+    grain_type=GrainType.PIGMENTED,
+    origin="Bhutan",
+    amylose_pct=20.0,
+    protein_pct=8.0,
+    starch_accessibility=1.0,
+    m0_new_crop=13.5,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=1.50,  # Semi-milled — less bran than full red
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=120,
+    stickiness=2.5,
+    softness=3.0,
+    grain_definition=3.5,
+    best_for=["grain bowls", "side dish", "Bhutanese meals"],
+    notes="Semi-milled red japonica grown at high altitude. Cooks pale "
+          "pink. Softer and faster than Thai red cargo because partially "
+          "milled. Earthy, nutty flavor.",
+))
+
+# ── African ────────────────────────────────────────────────────────────────────
+
+_register("ofada", RiceVariety(
+    name="Ofada Rice",
+    short_name="Ofada",
+    grain_type=GrainType.BROWN,
+    origin="Nigeria (Ogun State)",
+    amylose_pct=22.0,
+    protein_pct=8.5,
+    starch_accessibility=1.1,
+    m0_new_crop=13.5,
+    m0_old_crop=11.5,
+    target_moisture=27.0,
+    water_ratio_base=1.55,
+    water_ratio_new_crop_adj=0.95,
+    min_soak_min=30,
+    max_soak_min=120,
+    stickiness=2.0,
+    softness=2.5,
+    grain_definition=4.0,
+    best_for=["Ofada stew", "Nigerian dishes", "West African meals"],
+    notes="Unpolished Nigerian rice with robust flavor and distinctive "
+          "aroma. Traditionally served with spicy Ofada stew. Short grain, "
+          "brownish appearance. Heritage variety.",
+))
+
+_register("jollof_rice", RiceVariety(
+    name="Long Grain Parboiled (Jollof)",
+    short_name="Parboiled (Jollof)",
+    grain_type=GrainType.WHITE,
+    origin="Various (West Africa)",
+    amylose_pct=24.0,
+    protein_pct=7.5,
+    starch_accessibility=1.15,  # Parboiling hardens the grain
+    m0_new_crop=12.5,
+    m0_old_crop=11.0,
+    target_moisture=26.0,
+    water_ratio_base=1.60,
+    water_ratio_new_crop_adj=0.96,
+    min_soak_min=0,
+    max_soak_min=30,
+    stickiness=1.5,
+    softness=2.0,
+    grain_definition=5.0,
+    best_for=["jollof rice", "fried rice", "West African dishes"],
+    notes="Parboiled long-grain used across West Africa. Parboiling "
+          "pre-gelatinizes starch, making grains firmer and more separate. "
+          "Essential for jollof — grains must stay distinct in tomato sauce.",
+))
+
+# ── Cambodian ──────────────────────────────────────────────────────────────────
+
+_register("phka_malis", RiceVariety(
+    name="Phka Malis (Cambodian Jasmine)",
+    short_name="Phka Malis",
+    grain_type=GrainType.WHITE,
+    origin="Cambodia",
+    amylose_pct=16.0,
+    protein_pct=7.0,
+    starch_accessibility=0.95,
+    m0_new_crop=13.5,
+    m0_old_crop=12.0,
+    target_moisture=29.0,
+    water_ratio_base=1.25,
+    water_ratio_new_crop_adj=0.94,
+    min_soak_min=0,
+    max_soak_min=30,
+    stickiness=3.5,
+    softness=3.5,
+    grain_definition=3.0,
+    best_for=["Cambodian curry", "everyday Khmer", "plain rice"],
+    notes="Cambodian fragrant rice, similar to Thai jasmine but slightly "
+          "stickier. Multiple 'World's Best Rice' winner. Pandan aroma.",
+))
+
+
+# ─── Dish Pairing Guide ───────────────────────────────────────────────────────
+# What makes rice right for a dish is about texture match, not origin.
+# Key axes: stickiness (holds together vs stays separate),
+#           softness (absorbs sauce vs provides structure),
+#           grain definition (blends vs contrasts with toppings).
+#
+# Organized by dish style, ranked best → acceptable.
+
+DISH_PAIRINGS = {
+    # ── Japanese ───────────────────────────────────────────────────────
+    "sushi / nigiri": {
+        "needs": "Sticky enough to hold shape, defined enough to not smear with vinegar",
+        "best": ["tsuyahime", "niji_no_kirameki"],
+        "good": ["koshihikari", "hitomebore", "akitakomachi"],
+        "avoid": ["milky_queen", "mochigome", "basmati"],
+    },
+    "chirashi": {
+        "needs": "Clean grain definition, vinegar absorbs well, not too sticky",
+        "best": ["niji_no_kirameki", "tsuyahime"],
+        "good": ["nanatsuboshi", "ginga_no_shizuku", "koshihikari"],
+        "avoid": ["milky_queen", "yumepirika"],
+    },
+    "donburi (gyudon, oyakodon, katsudon)": {
+        "needs": "Soft, absorbent, cohesive — hugs the sauce and toppings",
+        "best": ["hitomebore"],
+        "good": ["koshihikari", "wuchang", "korean", "akitakomachi"],
+        "avoid": ["basmati", "indica_long", "niji_no_kirameki"],
+    },
+    "curry rice": {
+        "needs": "Absorbs sauce without going mushy, holds spoon shape",
+        "best": ["hitomebore"],
+        "good": ["koshihikari", "dongbei", "wuchang", "korean"],
+        "avoid": ["yumepirika", "milky_queen", "basmati"],
+    },
+    "onigiri": {
+        "needs": "Gentle stickiness, holds shape without smearing, not too wet",
+        "best": ["hitomebore"],
+        "good": ["koshihikari", "akitakomachi", "wuchang"],
+        "avoid": ["milky_queen", "basmati", "indica_long"],
+    },
+    "TKG (tamago kake gohan)": {
+        "needs": "Creamy, soft, blends with raw egg — rice is the star",
+        "best": ["yumepirika", "milky_queen"],
+        "good": ["hitomebore", "koshihikari", "wuchang"],
+        "avoid": ["niji_no_kirameki", "basmati", "indica_long"],
+    },
+    "plain rice (with fish, tsukemono)": {
+        "needs": "Clean flavor, defined grains, lets toppings shine",
+        "best": ["tsuyahime", "nanatsuboshi"],
+        "good": ["niji_no_kirameki", "ginga_no_shizuku", "koshihikari"],
+        "avoid": ["milky_queen"],
+    },
+    "mochi / sekihan": {
+        "needs": "Maximum stickiness, steamed not boiled",
+        "best": ["mochigome"],
+        "good": ["khao_niao", "nuo_mi"],
+        "avoid": ["everything else"],
+    },
+    "fried rice (chahan)": {
+        "needs": "Separate grains, low stickiness, ideally day-old rice",
+        "best": ["dongbei", "indica_long", "nanatsuboshi"],
+        "good": ["calrose", "korean", "jasmine"],
+        "avoid": ["yumepirika", "milky_queen", "mochigome"],
+    },
+    # ── Korean ─────────────────────────────────────────────────────────
+    "bibimbap": {
+        "needs": "Slightly chewy, elastic, holds up under mixing",
+        "best": ["korean"],
+        "good": ["dongbei", "hitomebore", "nanatsuboshi"],
+        "avoid": ["milky_queen", "basmati"],
+    },
+    # ── Thai / SE Asian ────────────────────────────────────────────────
+    "Thai curry (green, red, massaman)": {
+        "needs": "Fragrant, slightly sticky, absorbs coconut curry",
+        "best": ["jasmine"],
+        "good": ["hitomebore", "wuchang", "dongbei"],
+        "avoid": ["basmati", "indica_long"],
+    },
+    "mango sticky rice": {
+        "needs": "Glutinous, soaks up coconut cream, steamed",
+        "best": ["khao_niao"],
+        "good": ["mochigome", "nuo_mi"],
+        "avoid": ["everything else"],
+    },
+    "pad thai / stir fry": {
+        "needs": "Separate grains, pairs with sauce without clumping",
+        "best": ["jasmine"],
+        "good": ["indica_long", "dongbei"],
+        "avoid": ["mochigome", "milky_queen"],
+    },
+    "som tum / laab (Isaan meals)": {
+        "needs": "Sticky rice eaten by hand, traditional Lao/Isaan style",
+        "best": ["khao_niao"],
+        "good": [],
+        "avoid": ["everything else"],
+    },
+    "grain bowl / salad": {
+        "needs": "Chewy, nutty, holds structure cold, interesting texture",
+        "best": ["red_cargo", "thai_black"],
+        "good": ["genmai", "multigrain"],
+        "avoid": ["milky_queen", "yumepirika", "mochigome"],
+    },
+    # ── Persian ────────────────────────────────────────────────────────
+    "chelow (plain Persian steamed rice)": {
+        "needs": "Long separate grains, fragrant, light and fluffy",
+        "best": ["sadri", "tarom", "domsiah"],
+        "good": ["basmati", "champa_iranian"],
+        "avoid": ["koshihikari", "hitomebore", "mochigome"],
+    },
+    "polo (Persian pilaf with mix-ins)": {
+        "needs": "Grains stay separate when mixed with herbs/fruits/meat",
+        "best": ["sadri", "tarom", "basmati"],
+        "good": ["domsiah", "champa_iranian"],
+        "avoid": ["any japonica"],
+    },
+    "tahdig (crispy bottom crust)": {
+        "needs": "Forms crispy crust on bottom, fluffy on top",
+        "best": ["sadri", "domsiah", "tarom"],
+        "good": ["basmati", "champa_iranian"],
+        "avoid": ["any sticky/japonica variety"],
+    },
+    # ── Indian ─────────────────────────────────────────────────────────
+    "biryani": {
+        "needs": "Maximum grain elongation, stays separate in layers, fragrant",
+        "best": ["basmati_1121", "basmati"],
+        "good": ["sadri", "tarom", "indica_long"],
+        "avoid": ["any japonica"],
+    },
+    "dal + rice": {
+        "needs": "Separate grains that mix well with lentils",
+        "best": ["basmati"],
+        "good": ["indica_long", "jasmine"],
+        "avoid": ["mochigome", "milky_queen"],
+    },
+    # ── Chinese ────────────────────────────────────────────────────────
+    "congee / jook": {
+        "needs": "Breaks down into creamy porridge, starchy",
+        "best": ["wuchang", "dongbei", "calrose"],
+        "good": ["koshihikari", "hitomebore"],
+        "avoid": ["basmati", "indica_long"],
+    },
+    "lo mai gai / zongzi (lotus leaf rice)": {
+        "needs": "Glutinous, holds together in wrapping, steamed",
+        "best": ["nuo_mi"],
+        "good": ["mochigome", "khao_niao"],
+        "avoid": ["everything else"],
+    },
+    "clay pot rice": {
+        "needs": "Forms crispy crust (guoba), absorbs soy sauce, separate top grains",
+        "best": ["dongbei", "jasmine"],
+        "good": ["wuchang", "calrose"],
+        "avoid": ["mochigome", "milky_queen"],
+    },
+    # ── Italian ────────────────────────────────────────────────────────
+    "risotto": {
+        "needs": "Releases surface starch for creaminess, firm core, never rinsed",
+        "best": ["carnaroli", "vialone_nano"],
+        "good": ["arborio"],
+        "avoid": ["basmati", "jasmine", "any long-grain"],
+    },
+    "arancini": {
+        "needs": "Sticky enough to hold ball shape, creamy interior",
+        "best": ["arborio"],
+        "good": ["carnaroli"],
+        "avoid": ["basmati", "indica_long"],
+    },
+    # ── Spanish ────────────────────────────────────────────────────────
+    "paella": {
+        "needs": "Absorbs massive broth volume, stays separate, socarrat crust",
+        "best": ["bomba"],
+        "good": ["calasparra", "arborio"],
+        "avoid": ["jasmine", "basmati", "any sticky/japonica"],
+    },
+    # ── Vietnamese ─────────────────────────────────────────────────────
+    "pho / Vietnamese meals": {
+        "needs": "Fragrant, soft, complements broth-based dishes",
+        "best": ["st25", "jasmine"],
+        "good": ["phka_malis"],
+        "avoid": ["basmati", "bomba"],
+    },
+    # ── West African ───────────────────────────────────────────────────
+    "jollof rice": {
+        "needs": "Grains stay separate in tomato sauce, absorbs flavor",
+        "best": ["jollof_rice"],
+        "good": ["indica_long", "basmati"],
+        "avoid": ["any japonica", "mochigome"],
+    },
+    "rice + stew (West African)": {
+        "needs": "Separate grains, absorbs thick stew",
+        "best": ["ofada", "jollof_rice"],
+        "good": ["indica_long"],
+        "avoid": ["japonica", "mochigome"],
+    },
+    # ── Misc / Universal ───────────────────────────────────────────────
+    "rice pudding / dessert": {
+        "needs": "Breaks down, releases starch, becomes creamy",
+        "best": ["arborio", "milky_queen"],
+        "good": ["calrose", "wuchang", "mochigome"],
+        "avoid": ["basmati", "bomba"],
+    },
+}
+
+
+def recommend_for_dish(dish: str) -> dict | None:
+    """Get rice variety recommendations for a specific dish.
+
+    Args:
+        dish: Dish name (exact match or substring search)
+
+    Returns dict with dish info and variety recommendations, or None.
+    """
+    dish_lower = dish.lower()
+    for dish_name, info in DISH_PAIRINGS.items():
+        if dish_lower in dish_name.lower() or dish_name.lower() in dish_lower:
+            best_recs = [
+                {"key": k, "variety": VARIETIES[k].name, "water_ratio": VARIETIES[k].water_ratio_base}
+                for k in info["best"] if k in VARIETIES
+            ]
+            good_recs = [
+                {"key": k, "variety": VARIETIES[k].name, "water_ratio": VARIETIES[k].water_ratio_base}
+                for k in info["good"] if k in VARIETIES
+            ]
+            return {
+                "dish": dish_name,
+                "needs": info["needs"],
+                "best": best_recs,
+                "good": good_recs,
+                "avoid": info["avoid"],
+            }
+    return None
+
+
+def list_dishes() -> list[str]:
+    """List all dishes in the pairing guide."""
+    return list(DISH_PAIRINGS.keys())
+
 
 # ─── Core Model Functions ──────────────────────────────────────────────────────
 
